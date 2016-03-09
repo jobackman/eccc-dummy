@@ -16,8 +16,25 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    featureFlags: {
+      ENABLE_FOO: false,
+      ENABLE_BAR: false
+    },
+    includeDirByFlag: {
+      ENABLE_FOO: [],
+      ENABLE_BAR: []
     }
   };
+
+  if (process.env.baz === 'foo') {
+    ENV.featureFlags.ENABLE_FOO = true;
+  }
+
+  if (process.env.baz === 'bar') {
+    ENV.featureFlags.ENABLE_BAR = true;
+  }
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
